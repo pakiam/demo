@@ -14,7 +14,7 @@ const programs = [
     id: 2,
     frontName: 'Программа НМО 2',
     price: 2000,
-    description: 'Описание программы',
+    description: 'Описание программы. Все про Apple.',
     img: 'https://picsum.photos/400',
     categoryId: [1, 3],
     details: {
@@ -25,7 +25,7 @@ const programs = [
     id: 3,
     frontName: 'Программа НМО 3',
     price: 2000,
-    description: 'Описание программы',
+    description: 'Описание программы. Все про Apple и Microsoft.',
     img: 'https://picsum.photos/400',
     categoryId: [3],
     details: {
@@ -36,7 +36,7 @@ const programs = [
     id: 4,
     frontName: 'Программа НМО 4',
     price: 2000,
-    description: 'Описание программы',
+    description: 'Описание программы. Все про Apple.',
     img: 'https://picsum.photos/400',
     categoryId: [4],
     details: {
@@ -47,7 +47,7 @@ const programs = [
     id: 5,
     frontName: 'Программа НМО 5',
     price: 2000,
-    description: 'Описание программы',
+    description: 'Описание программы. Все про Google.',
     img: 'https://picsum.photos/400',
     categoryId: [1, 2, 3],
     details: {

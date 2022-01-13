@@ -16,7 +16,7 @@
                     >
                       {{
                         $numberLingFormWithNumberFunc(
-                          cartItems,
+                          cartItemsCount,
                           'программа',
                           'программы',
                           'программ'
@@ -30,7 +30,10 @@
               <!-- Search form -->
               <v-form
                 @submit.prevent="
-                  onSearchProgramByName({ string: searchString, source: 'form' })
+                  onSearchProgramByName({
+                    string: searchString,
+                    source: 'form',
+                  })
                 "
               >
                 <v-container>
@@ -40,7 +43,12 @@
                         v-model="searchString"
                         label="Программы НМО"
                         append-icon="mdi-magnify"
-                        @input="onSearchProgramByName({string: searchString, source: 'input' })"
+                        @input="
+                          onSearchProgramByName({
+                            string: searchString,
+                            source: 'input',
+                          })
+                        "
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -61,7 +69,11 @@
             </v-navigation-drawer>
 
             <v-list v-if="categories">
-              <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+              <v-list-item-group
+                v-model="selectedCategory"
+                mandatory
+                color="primary"
+              >
                 <v-list-item
                   v-for="category in categories"
                   :key="category.id"
@@ -102,7 +114,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      cartItems: 'cart/totalItems',
+      cartItemsCount: 'cart/totalCount',
       cartPrice: 'cart/totalPrice',
       isCartEmpty: 'cart/isEmpty',
     }),

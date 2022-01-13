@@ -24,7 +24,6 @@ export default {
   },
   methods: {},
   mounted () {
-    console.log('ALLO!')
   },
 }
 </script>

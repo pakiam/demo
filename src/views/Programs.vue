@@ -60,7 +60,6 @@ export default {
      * @params data.source
      *  */
     async onSearchProgramByName (data) {
-      console.log('onSearchProgramByName', data)
       clearTimeout(this.searchTimeout)
 
       if (data.source === 'form') {
@@ -91,8 +90,7 @@ export default {
       }
     },
     async searchProgramByName (string) {
-      console.log('searchProgramByName', string)
-      const str = string.trim()
+      const str = string.trim().toLowerCase()
       if (str) {
         const res = await this.getProgramsByName({
           programs: this.programs,

@@ -2,7 +2,7 @@ export default {
   isEmpty: (state) => {
     return !state.cart.length
   },
-  totalItems: (state) => {
+  totalCount: (state) => {
     return state.cart ? state.cart.length : null
   },
   totalPrice: (state) => {
@@ -10,8 +10,10 @@ export default {
       ? state.cart.reduce((sum, item) => (sum += item.price), 0)
       : null
   },
+  cart: (state) => {
+    return state.cart
+  },
   isItemIn: (state) => (i) => {
-    console.log(state.cart.includes((item) => item.id === i.id))
     return Boolean(state.cart.find((item) => item.id === i.id))
   },
 }

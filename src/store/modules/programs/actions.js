@@ -39,7 +39,7 @@ export default {
   getProgramsByName: ({ dispatch }, { programs, string }) => {
     return Promise.resolve(programs.filter(
       (item) =>
-        item.frontName.includes(string) || item.description.includes(string),
+        item.frontName.toLowerCase().includes(string) || item.description.toLowerCase().includes(string),
     ))
   },
   // getProgramById: async ({ dispatch }, programId) => {
