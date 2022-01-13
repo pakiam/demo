@@ -16,7 +16,7 @@
         />
       </v-col>
     </v-row>
-    <div v-else>Nothing matched...</div>
+    <div v-else>Nothing matched</div>
   </div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
       this.removeFromCart(item)
     },
     onOpenProgram (item) {
+      console.log('123', item)
       this.$router.push({
         name: 'Program',
         params: {

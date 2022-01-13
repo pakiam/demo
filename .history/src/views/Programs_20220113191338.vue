@@ -8,18 +8,15 @@
         <template v-else>
           <aside class="col col-4">
             <AppAside
-              ref="AppAside"
               @onSelectCategory="onSelectCategory"
-              :onSearchProgramByName="onSearchProgramByName"
+              @onSearchProgramByName="onSearchProgramByName"
             >
             </AppAside>
           </aside>
           <main class="col col=8">
             <template v-if="isProgramsLoading"> Loading... </template>
             <template v-else>
-              <ProgramsList
-                :programs="filteredPrograms ? filteredPrograms : programs"
-              />
+              <ProgramsList :programs="programs" />
             </template>
           </main>
         </template>
@@ -43,7 +40,6 @@ export default {
       isLoading: true,
       isProgramsLoading: false,
       searchTimeout: null,
-      filteredPrograms: null,
     }
   },
   components: {
@@ -53,14 +49,12 @@ export default {
   methods: {
     ...mapActions({
       getPrograms: 'programs/getPrograms',
-      getProgramsByName: 'programs/getProgramsByName',
     }),
     /**
      * @params data.string
      * @params data.source
      *  */
     async onSearchProgramByName (data) {
-      console.log('onSearchProgramByName', data)
       clearTimeout(this.searchTimeout)
 
       if (data.source === 'form') {
@@ -72,7 +66,6 @@ export default {
       }
     },
     async onSelectCategory (categoryId) {
-      this.clearSearch()
       try {
         const response = await this.getPrograms({ category: categoryId })
         console.log('onSelectCategory response:', categoryId, response)
@@ -81,41 +74,29 @@ export default {
         console.log('onSelectCategory', error)
       } finally {
         this.isProgramsLoading = false
-        if (categoryId !== -1) {
-          const query = { ...this.$route.query, category: categoryId }
-          this.$router.replace({ query })
-        } else {
-          const query = { ...this.$route.query, category: undefined }
-          this.$router.replace({ query })
-        }
+        const query = { ...this.$route.query, category: categoryId }
+        this.$router.replace({ query })
       }
     },
     async searchProgramByName (string) {
-      console.log('searchProgramByName', string)
-      const str = string.trim()
-      if (str) {
-        const res = await this.getProgramsByName({
-          programs: this.programs,
-          string,
-        })
-        console.log('onSelectCategory response:', string, res)
-        this.$set(this.$data, 'filteredPrograms', res)
-      } else {
-        this.$set(this.$data, 'filteredPrograms', null)
+      this.isProgramsLoading = true
+      try {
+        const response = await this.getProgramsByName(string)
+        console.log('onSelectCategory response:', string, response)
+        this.$set(this.$data, 'programs', response)
+      } catch (error) {
+        console.log('onSelectCategory', error)
+      } finally {
+        this.isProgramsLoading = false
+        const query = { ...this.$route.query, name: string }
+        this.$router.replace({ query })
       }
-    },
-    clearSearch () {
-      this.$refs.AppAside.clearSearch()
-      this.$set(this.$data, 'filteredPrograms', null)
     },
   },
   async mounted () {
-    let data
-    if (this.$route.query && this.$route.query.category) {
-      data = { category: this.$route.query.category }
-    }
+    // TODO: check query param for category and get programs by it
     try {
-      const response = await this.getPrograms(data)
+      const response = await this.getPrograms()
       console.log('2', response)
       this.programs = response
     } catch (error) {

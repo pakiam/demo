@@ -61,7 +61,7 @@
             </v-navigation-drawer>
 
             <v-list v-if="categories">
-              <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+              <v-list-item-group v-model="selectedCategory" color="primary">
                 <v-list-item
                   v-for="category in categories"
                   :key="category.id"
@@ -93,6 +93,15 @@ export default {
       required: true,
     },
   },
+  watch: {
+    '$route.query.category': {
+      handler: function (newVal, oldVal) {
+        this.searchString = null
+        this.onSearchProgramByName('')
+      },
+      immediate: true,
+    },
+  },
   data () {
     return {
       searchString: null,
@@ -112,11 +121,7 @@ export default {
       getCategories: 'categories/getCategories',
     }),
     onSelectCategory (categoryId) {
-      if (categoryId === this.selectedCategory) return
       this.$emit('onSelectCategory', categoryId)
-    },
-    clearSearch () {
-      this.searchString = null
     },
   },
   async mounted () {

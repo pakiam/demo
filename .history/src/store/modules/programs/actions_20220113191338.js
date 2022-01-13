@@ -36,11 +36,15 @@ export default {
    *
    * @param {String} categoryId
    */
-  getProgramsByName: ({ dispatch }, { programs, string }) => {
-    return Promise.resolve(programs.filter(
-      (item) =>
-        item.frontName.includes(string) || item.description.includes(string),
-    ))
+  getProgramsByName: async ({ dispatch }, name) => {
+    let response
+    try {
+      response = await apiPrograms.getProgramsByName(name)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+
+    return response.data
   },
   // getProgramById: async ({ dispatch }, programId) => {
   //   let response

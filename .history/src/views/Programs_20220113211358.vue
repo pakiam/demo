@@ -8,7 +8,6 @@
         <template v-else>
           <aside class="col col-4">
             <AppAside
-              ref="AppAside"
               @onSelectCategory="onSelectCategory"
               :onSearchProgramByName="onSearchProgramByName"
             >
@@ -105,7 +104,7 @@ export default {
       }
     },
     clearSearch () {
-      this.$refs.AppAside.clearSearch()
+      this.$ref.AppAside.clearSearch()
       this.$set(this.$data, 'filteredPrograms', null)
     },
   },

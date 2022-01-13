@@ -8,7 +8,6 @@
         <template v-else>
           <aside class="col col-4">
             <AppAside
-              ref="AppAside"
               @onSelectCategory="onSelectCategory"
               :onSearchProgramByName="onSearchProgramByName"
             >
@@ -72,7 +71,6 @@ export default {
       }
     },
     async onSelectCategory (categoryId) {
-      this.clearSearch()
       try {
         const response = await this.getPrograms({ category: categoryId })
         console.log('onSelectCategory response:', categoryId, response)
@@ -90,11 +88,11 @@ export default {
         }
       }
     },
-    async searchProgramByName (string) {
+    searchProgramByName (string) {
       console.log('searchProgramByName', string)
       const str = string.trim()
       if (str) {
-        const res = await this.getProgramsByName({
+        const res = this.getProgramsByName({
           programs: this.programs,
           string,
         })
@@ -102,11 +100,10 @@ export default {
         this.$set(this.$data, 'filteredPrograms', res)
       } else {
         this.$set(this.$data, 'filteredPrograms', null)
+        return this.programs
       }
-    },
-    clearSearch () {
-      this.$refs.AppAside.clearSearch()
-      this.$set(this.$data, 'filteredPrograms', null)
+      const query = { ...this.$route.query, name: string }
+      this.$router.replace({ query })
     },
   },
   async mounted () {

@@ -1,15 +1,10 @@
 import apiPrograms from '@/api/programs'
 
 export default {
-  /**
-   * @description Get Programs
-   *
-   * @param {Number} categoryId
-   */
-  getPrograms: async ({ dispatch }, data = {}) => {
+  getPrograms: async ({ dispatch }) => {
     let response
     try {
-      response = await apiPrograms.getPrograms(data)
+      response = await apiPrograms.getPrograms()
     } catch (error) {
       return Promise.reject(error)
     }
@@ -17,7 +12,7 @@ export default {
     return response.data
   },
   /**
-   * @description Get Programs by category
+   * @description Search Programs by category
    *
    * @param {Number} categoryId
    */
@@ -36,11 +31,15 @@ export default {
    *
    * @param {String} categoryId
    */
-  getProgramsByName: ({ dispatch }, { programs, string }) => {
-    return Promise.resolve(programs.filter(
-      (item) =>
-        item.frontName.includes(string) || item.description.includes(string),
-    ))
+  getProgramsByName: async ({ dispatch }, name) => {
+    let response
+    try {
+      response = await apiPrograms.getProgramsByName(name)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+
+    return response.data
   },
   // getProgramById: async ({ dispatch }, programId) => {
   //   let response

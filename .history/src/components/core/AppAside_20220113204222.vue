@@ -30,7 +30,7 @@
               <!-- Search form -->
               <v-form
                 @submit.prevent="
-                  onSearchProgramByName({ string: searchString, source: 'form' })
+                  onSearchProgramByName({ string: searchString })
                 "
               >
                 <v-container>
@@ -61,7 +61,7 @@
             </v-navigation-drawer>
 
             <v-list v-if="categories">
-              <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+              <v-list-item-group v-model="selectedCategory" color="primary">
                 <v-list-item
                   v-for="category in categories"
                   :key="category.id"
@@ -112,11 +112,7 @@ export default {
       getCategories: 'categories/getCategories',
     }),
     onSelectCategory (categoryId) {
-      if (categoryId === this.selectedCategory) return
       this.$emit('onSelectCategory', categoryId)
-    },
-    clearSearch () {
-      this.searchString = null
     },
   },
   async mounted () {

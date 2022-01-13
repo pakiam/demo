@@ -8,7 +8,7 @@
         <template v-else>
           <aside class="col col-4">
             <AppAside
-              ref="AppAside"
+              :searchString="searchString"
               @onSelectCategory="onSelectCategory"
               :onSearchProgramByName="onSearchProgramByName"
             >
@@ -17,9 +17,7 @@
           <main class="col col=8">
             <template v-if="isProgramsLoading"> Loading... </template>
             <template v-else>
-              <ProgramsList
-                :programs="filteredPrograms ? filteredPrograms : programs"
-              />
+              <ProgramsList :programs="programs" />
             </template>
           </main>
         </template>
@@ -43,7 +41,8 @@ export default {
       isLoading: true,
       isProgramsLoading: false,
       searchTimeout: null,
-      filteredPrograms: null,
+      programsFilteredByName: null,
+      searchString: null,
     }
   },
   components: {
@@ -53,14 +52,13 @@ export default {
   methods: {
     ...mapActions({
       getPrograms: 'programs/getPrograms',
-      getProgramsByName: 'programs/getProgramsByName',
     }),
     /**
      * @params data.string
      * @params data.source
      *  */
     async onSearchProgramByName (data) {
-      console.log('onSearchProgramByName', data)
+      this.searchString = data.string
       clearTimeout(this.searchTimeout)
 
       if (data.source === 'form') {
@@ -72,7 +70,6 @@ export default {
       }
     },
     async onSelectCategory (categoryId) {
-      this.clearSearch()
       try {
         const response = await this.getPrograms({ category: categoryId })
         console.log('onSelectCategory response:', categoryId, response)
@@ -90,23 +87,20 @@ export default {
         }
       }
     },
-    async searchProgramByName (string) {
-      console.log('searchProgramByName', string)
+    searchProgramByName (string) {
       const str = string.trim()
       if (str) {
-        const res = await this.getProgramsByName({
+        return this.programs
+      } else {
+        const res = this.getProgramsByName({
           programs: this.programs,
           string,
         })
         console.log('onSelectCategory response:', string, res)
-        this.$set(this.$data, 'filteredPrograms', res)
-      } else {
-        this.$set(this.$data, 'filteredPrograms', null)
+        this.$set(this.$data, 'programsFilteredByName', res)
       }
-    },
-    clearSearch () {
-      this.$refs.AppAside.clearSearch()
-      this.$set(this.$data, 'filteredPrograms', null)
+      const query = { ...this.$route.query, name: string }
+      this.$router.replace({ query })
     },
   },
   async mounted () {

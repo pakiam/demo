@@ -39,9 +39,9 @@ export default {
     // return programs
     // Promise.resolve(programs)
   },
-  getProgramsByName (string) {
+  getProgramsByName (data, string) {
     return new Promise(function (resolve, reject) {
-      const filteredPrograms = programs.filter(
+      const filteredPrograms = data.filter(
         (item) =>
           item.frontName.includes(string) || item.description.includes(string),
       )

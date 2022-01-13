@@ -57,6 +57,7 @@ export default {
       this.removeFromCart(item)
     },
     onOpenProgram (item) {
+      console.log('123', item)
       this.$router.push({
         name: 'Program',
         params: {

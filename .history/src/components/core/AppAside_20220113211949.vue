@@ -61,7 +61,7 @@
             </v-navigation-drawer>
 
             <v-list v-if="categories">
-              <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+              <v-list-item-group :value="selectedCategory" @input="onInput" color="primary">
                 <v-list-item
                   v-for="category in categories"
                   :key="category.id"
@@ -111,7 +111,12 @@ export default {
     ...mapActions({
       getCategories: 'categories/getCategories',
     }),
+    onInput (value) {
+      console.log('onInput', value)
+      if (value === this.selectedCategory) return
+    },
     onSelectCategory (categoryId) {
+      console.log('23', categoryId === this.selectedCategory)
       if (categoryId === this.selectedCategory) return
       this.$emit('onSelectCategory', categoryId)
     },

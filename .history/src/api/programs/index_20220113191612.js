@@ -18,7 +18,7 @@ export default {
     if (hasParameters) {
       return new Promise(function (resolve, reject) {
         if (payload.category) {
-          const category = Number(payload.category)
+          const category = payload.category
 
           if (category === -1) {
             resolve({ data: programs, success: true })

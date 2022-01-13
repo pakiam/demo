@@ -112,7 +112,6 @@ export default {
       getCategories: 'categories/getCategories',
     }),
     onSelectCategory (categoryId) {
-      if (categoryId === this.selectedCategory) return
       this.$emit('onSelectCategory', categoryId)
     },
     clearSearch () {

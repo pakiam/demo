@@ -105,7 +105,7 @@ export default {
       }
     },
     clearSearch () {
-      this.$refs.AppAside.clearSearch()
+      this.$ref.AppAside.clearSearch()
       this.$set(this.$data, 'filteredPrograms', null)
     },
   },

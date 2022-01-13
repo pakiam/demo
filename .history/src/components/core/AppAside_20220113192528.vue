@@ -28,11 +28,7 @@
                 </v-subheader>
               </v-system-bar>
               <!-- Search form -->
-              <v-form
-                @submit.prevent="
-                  onSearchProgramByName({ string: searchString, source: 'form' })
-                "
-              >
+              <v-form @submit.prevent="onSearchProgramByName(searchString)">
                 <v-container>
                   <v-row no-gutters>
                     <v-col cols="12" md="12">
@@ -40,7 +36,7 @@
                         v-model="searchString"
                         label="Программы НМО"
                         append-icon="mdi-magnify"
-                        @input="onSearchProgramByName({string: searchString, source: 'input' })"
+                        @input="onSearchProgramByName(searchString, 'input')"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -61,7 +57,7 @@
             </v-navigation-drawer>
 
             <v-list v-if="categories">
-              <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+              <v-list-item-group v-model="selectedCategory" color="primary">
                 <v-list-item
                   v-for="category in categories"
                   :key="category.id"
@@ -87,12 +83,6 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'AppAside',
-  props: {
-    onSearchProgramByName: {
-      type: Function,
-      required: true,
-    },
-  },
   data () {
     return {
       searchString: null,
@@ -112,11 +102,10 @@ export default {
       getCategories: 'categories/getCategories',
     }),
     onSelectCategory (categoryId) {
-      if (categoryId === this.selectedCategory) return
       this.$emit('onSelectCategory', categoryId)
     },
-    clearSearch () {
-      this.searchString = null
+    onSearchProgramByName (string, source = 'form') {
+      this.$emit('onSearchProgramByName', { string, source })
     },
   },
   async mounted () {

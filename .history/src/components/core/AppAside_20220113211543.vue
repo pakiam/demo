@@ -61,7 +61,7 @@
             </v-navigation-drawer>
 
             <v-list v-if="categories">
-              <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+              <v-list-item-group v-model="selectedCategory" color="primary">
                 <v-list-item
                   v-for="category in categories"
                   :key="category.id"
