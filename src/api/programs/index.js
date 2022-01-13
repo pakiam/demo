@@ -21,19 +21,24 @@ export default {
           const category = Number(payload.category)
 
           if (category === -1) {
-            resolve({ data: programs, success: true })
+            setTimeout(() => {
+              resolve({ data: programs, success: true })
+            }, 1000)
           } else {
             const filteredPrograms = programs.filter((item) =>
               item.categoryId.includes(category),
             )
-
-            resolve({ data: filteredPrograms, success: true })
+            setTimeout(() => {
+              resolve({ data: filteredPrograms, success: true })
+            }, 1000)
           }
         }
       })
     } else {
       return new Promise(function (resolve, reject) {
-        resolve({ data: programs, success: true })
+        setTimeout(() => {
+          resolve({ data: programs, success: true })
+        }, 1000)
       })
     }
     // return programs

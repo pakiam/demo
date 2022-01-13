@@ -7,7 +7,7 @@
         :key="program.id"
         class="b-programs-list__item"
       >
-        <ProgramCard
+        <ProgramCardDefault
           :program="program"
           :isInCart="isItemInCart(program)"
           @onAddToCart="onAddToCart"
@@ -22,7 +22,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import ProgramCard from './ProgramCard.vue'
+import ProgramCardDefault from '../core/ProgramCard/ProgramCardDefault.vue'
 
 export default {
   name: 'ProgramsList',
@@ -37,7 +37,7 @@ export default {
     },
   },
   components: {
-    ProgramCard,
+    ProgramCardDefault,
   },
   computed: {
     ...mapGetters({

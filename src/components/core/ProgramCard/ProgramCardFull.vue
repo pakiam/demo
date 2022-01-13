@@ -16,15 +16,10 @@
       </template>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
-        <v-row justify="space-between">
-          <v-col cols="12" align="end'">
+        <v-row align="center">
+          <v-col cols="12" align="end">
             <v-btn color="primary" @click="onCartClick(program)">
               {{ isInCart ? 'Убрать' : 'В корзину' }}
-            </v-btn>
-          </v-col>
-          <v-col cols="6" align="center">
-            <v-btn color="deep-purple lighten-2" text @click="onOpen(program)">
-              Подробнее
             </v-btn>
           </v-col>
         </v-row>
@@ -35,7 +30,7 @@
 
 <script>
 export default {
-  name: 'ProgramCard',
+  name: 'ProgramCardFull',
   props: {
     /**
      * @description

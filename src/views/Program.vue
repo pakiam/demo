@@ -1,11 +1,11 @@
 <template>
   <div class="page-program">
-    <Program :program="program" :isInCart="isInCart" />
+    <ProgramPopup :program="program" :isInCart="isInCart" />
   </div>
 </template>
 
 <script>
-import Program from '../components/program/Program.vue'
+import ProgramPopup from '../components/program/ProgramPopup.vue'
 
 export default {
   name: 'PageProgram',
@@ -20,7 +20,7 @@ export default {
     },
   },
   components: {
-    Program,
+    ProgramPopup,
   },
   methods: {},
   mounted () {

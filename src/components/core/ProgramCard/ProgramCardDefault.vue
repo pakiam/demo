@@ -17,6 +17,11 @@
               {{ isInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
           </v-col>
+          <v-col cols="6" align="center">
+            <v-btn color="deep-purple lighten-2" text @click="onOpen(program)">
+              Подробнее
+            </v-btn>
+          </v-col>
         </v-row>
       </v-card-actions>
     </v-card>
@@ -25,7 +30,7 @@
 
 <script>
 export default {
-  name: 'ProgramCard',
+  name: 'ProgramCardDefault',
   props: {
     /**
      * @description
@@ -39,6 +44,10 @@ export default {
     isInCart: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: 'default',
     },
   },
   methods: {

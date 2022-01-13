@@ -5,7 +5,7 @@
       <v-row align="center" dense justify="center">
         <v-col cols="10">
           <div class="b-program">
-            <ProgramCard
+            <ProgramCardFull
               :program="program"
               :isInCart="isItemInCart(program)"
               :isFull="true"
@@ -22,16 +22,16 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import ProgramCard from '../programs/ProgramCard'
+import ProgramCardFull from '../core/ProgramCard/ProgramCardFull.vue'
 import PopupOverlay from '../core/Popup/PopupOverlay.vue'
 import PopupRouterView from '../core/Popup/PopupRouterView.vue'
 
 export default {
-  name: 'Program',
+  name: 'ProgramPopup',
   components: {
     PopupOverlay,
     PopupRouterView,
-    ProgramCard,
+    ProgramCardFull,
   },
   props: {
     program: {

@@ -71,6 +71,7 @@ export default {
       }
     },
     async onSelectCategory (categoryId) {
+      this.isProgramsLoading = true
       this.clearSearch()
       try {
         const response = await this.getPrograms({ category: categoryId })

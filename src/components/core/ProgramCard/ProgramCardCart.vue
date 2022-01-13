@@ -12,7 +12,7 @@
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
         <v-row justify="space-between">
-          <v-col cols="6" align="center">
+          <v-col cols="12" align="end">
             <v-btn color="primary" @click="onRemoveClick(program)">
               {{ 'Убрать' }}
             </v-btn>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'ProgramCard',
+  name: 'ProgramCardCart',
   props: {
     /**
      * @description
