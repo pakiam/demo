@@ -81,10 +81,10 @@ export default {
     if (!this.program) {
       try {
         const response = await this.getProgramById(this.$route.params.id)
-        console.log('123', response)
         this.innerProgram = response
         this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
       } catch (error) {
+        console.log('Program mounted', error)
       } finally {
       }
     } else {

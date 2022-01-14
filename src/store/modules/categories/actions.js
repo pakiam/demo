@@ -11,14 +11,4 @@ export default {
 
     return response.data
   },
-  // getCategoryById: async ({ dispatch }, categoryId) => {
-  //   let response
-  //   try {
-  //     response = await apiCategories.getCategoryById({ categoryId: categoryId })
-  //   } catch (error) {
-  //     return Promise.reject(error)
-  //   }
-
-  //   return response.data
-  // }
 }

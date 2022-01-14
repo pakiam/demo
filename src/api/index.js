@@ -23,21 +23,17 @@ export default {
    */
   async errorHandler (data = {}) {
     const {
-      error: {
-        response: {
-          status = null
-        } = {}
-      } = {},
+      error: { response: { status = null } = {} } = {},
       method = null,
       url = null,
       payload = null,
-      reSend = false
+      reSend = false,
     } = data
 
     switch (status) {
       case 401: {
         store.dispatch('client/logout', {
-          withoutLogoutRequest: true
+          withoutLogoutRequest: true,
         })
 
         // eslint-disable-next-line prefer-promise-reject-errors
@@ -61,7 +57,7 @@ export default {
   async get (url, payload, reSend = true) {
     try {
       return await this.httpClient.get(url, {
-        params: payload
+        params: payload,
       })
     } catch (error) {
       return await this.errorHandler({
@@ -69,7 +65,7 @@ export default {
         error,
         url,
         payload,
-        reSend
+        reSend,
       })
     }
   },
@@ -83,7 +79,7 @@ export default {
         error,
         url,
         payload,
-        reSend
+        reSend,
       })
     }
   },
@@ -97,7 +93,7 @@ export default {
         error,
         url,
         payload,
-        reSend
+        reSend,
       })
     }
   },
@@ -111,8 +107,8 @@ export default {
         error,
         url,
         payload,
-        reSend
+        reSend,
       })
     }
-  }
+  },
 }

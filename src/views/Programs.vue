@@ -75,7 +75,6 @@ export default {
       this.clearSearch()
       try {
         const response = await this.getPrograms({ category: categoryId })
-        console.log('onSelectCategory response:', categoryId, response)
         this.$set(this.$data, 'programs', response)
       } catch (error) {
         console.log('onSelectCategory', error)
@@ -97,7 +96,6 @@ export default {
           programs: this.programs,
           string,
         })
-        console.log('onSelectCategory response:', string, res)
         this.$set(this.$data, 'filteredPrograms', res)
       } else {
         this.$set(this.$data, 'filteredPrograms', null)
@@ -115,7 +113,6 @@ export default {
     }
     try {
       const response = await this.getPrograms(data)
-      console.log('2', response)
       this.programs = response
     } catch (error) {
       console.log('Programs mounted', error)
