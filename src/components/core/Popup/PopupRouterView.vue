@@ -1,7 +1,13 @@
 <template>
   <Portal to="popup">
-    <PopupBase :label="label" @close="$router.back()">
-      <slot name="backdrop" slot="backdrop" />
+    <PopupBase
+      :label="label"
+      @close="$router.back()"
+    >
+      <slot
+        slot="backdrop"
+        name="backdrop"
+      />
       <slot />
     </PopupBase>
   </Portal>
@@ -12,14 +18,14 @@ import PopupBase from './PopupBase.vue'
 
 export default {
   name: 'PopupRouterView',
+  components: {
+    PopupBase,
+  },
   props: {
     label: {
       required: true,
       type: String,
     },
-  },
-  components: {
-    PopupBase,
   },
 }
 </script>

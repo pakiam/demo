@@ -1,26 +1,36 @@
 <template>
-<div class="page-program">
-  <PopupRouterView label="program-page">
-    <PopupOverlay slot="backdrop" />
-    <v-container fluid>
-      <v-row align="center" dense justify="center">
-        <v-col cols="10">
-          <div v-if="innerProgram" class="page-program__program">
-            <ProgramCardFull
-              :program="innerProgram"
-              :isProgramInCart="innerIsItemInCart"
-              @onAddToCart="onAddToCart"
-              @onRemoveFromCart="onRemoveFromCart"
-            />
-          </div>
-          <div v-else class="page-program__loader">
-            Loading...
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </PopupRouterView>
-</div>
+  <div class="page-program">
+    <PopupRouterView label="program-page">
+      <PopupOverlay slot="backdrop" />
+      <v-container fluid>
+        <v-row
+          align="center"
+          dense
+          justify="center"
+        >
+          <v-col cols="10">
+            <div
+              v-if="innerProgram"
+              class="page-program__program"
+            >
+              <ProgramCardFull
+                :program="innerProgram"
+                :is-program-in-cart="innerIsItemInCart"
+                @onAddToCart="onAddToCart"
+                @onRemoveFromCart="onRemoveFromCart"
+              />
+            </div>
+            <div
+              v-else
+              class="page-program__loader"
+            >
+              Loading...
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </PopupRouterView>
+  </div>
 </template>
 
 <script>
@@ -32,6 +42,11 @@ import PopupRouterView from '../components/core/Popup/PopupRouterView.vue'
 
 export default {
   name: 'PageProgram',
+  components: {
+    ProgramCardFull,
+    PopupOverlay,
+    PopupRouterView,
+  },
   props: {
     program: {
       type: Object,
@@ -40,11 +55,6 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  components: {
-    ProgramCardFull,
-    PopupOverlay,
-    PopupRouterView,
   },
   data () {
     return {
@@ -56,6 +66,21 @@ export default {
     ...mapGetters({
       checkIsItemInCart: 'cart/isItemIn',
     }),
+  },
+  async mounted () {
+    if (!this.program) {
+      try {
+        const response = await this.getProgramById(this.$route.params.id)
+        this.innerProgram = response
+        this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
+      } catch (error) {
+        console.log('Program mounted', error)
+      } finally {
+      }
+    } else {
+      this.innerProgram = this.program
+      this.innerIsItemInCart = this.isProgramInCart
+    }
   },
   methods: {
     ...mapActions({
@@ -77,26 +102,11 @@ export default {
       })
     },
   },
-  async mounted () {
-    if (!this.program) {
-      try {
-        const response = await this.getProgramById(this.$route.params.id)
-        this.innerProgram = response
-        this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
-      } catch (error) {
-        console.log('Program mounted', error)
-      } finally {
-      }
-    } else {
-      this.innerProgram = this.program
-      this.innerIsItemInCart = this.isProgramInCart
-    }
-  },
 }
 </script>
 
 <style lang="scss">
-.page-program__loader{
+.page-program__loader {
   background-color: #fff;
   width: 100%;
   height: 100%;

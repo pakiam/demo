@@ -1,13 +1,22 @@
 <template>
   <div class="app-aside">
     <v-container>
-      <v-row dense class="mb-4">
+      <v-row
+        dense
+        class="mb-4"
+      >
         <v-col cols="12">
-          <v-card class="mx-auto" width="256" tile>
+          <v-card
+            class="mx-auto"
+            width="256"
+            tile
+          >
             <v-navigation-drawer permanent>
               <v-system-bar>
                 <v-subheader>
-                  <template v-if="isCartEmpty"> Корзина пуста </template>
+                  <template v-if="isCartEmpty">
+                    Корзина пуста
+                  </template>
                   <template v-else>
                     <router-link
                       class="v-subheader theme--light"
@@ -22,20 +31,26 @@
                           'программ'
                         )
                       }}
-                      - {{ cartPrice }}&nbsp;₽</router-link
-                    >
+                      - {{ cartPrice }}&nbsp;₽
+                    </router-link>
                   </template>
                 </v-subheader>
               </v-system-bar>
               <!-- Search form -->
-              <SearchForm :onSearchProgramByName="onSearchProgramByName" ref="SearchForm" />
+              <SearchForm
+                ref="SearchForm"
+                :on-search-program-by-name="onSearchProgramByName"
+              />
               <!-- /Search form -->
             </v-navigation-drawer>
           </v-card>
         </v-col>
       </v-row>
 
-      <v-row dense v-if="categories">
+      <v-row
+        v-if="categories"
+        dense
+      >
         <v-col cols="12">
           <!-- CategoryFilter -->
           <CategoryFilter
@@ -80,6 +95,15 @@ export default {
       isCartEmpty: 'cart/isEmpty',
     }),
   },
+  async mounted () {
+    try {
+      const response = await this.getCategories()
+      this.categories = response
+    } catch (error) {
+      console.log('AppAside mounted', error)
+    } finally {
+    }
+  },
   methods: {
     ...mapActions({
       getCategories: 'categories/getCategories',
@@ -90,15 +114,6 @@ export default {
     clearSearch () {
       this.$refs.SearchForm.clearSearch()
     },
-  },
-  async mounted () {
-    try {
-      const response = await this.getCategories()
-      this.categories = response
-    } catch (error) {
-      console.log('AppAside mounted', error)
-    } finally {
-    }
   },
 }
 </script>

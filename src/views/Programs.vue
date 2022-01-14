@@ -3,19 +3,22 @@
     <v-container fluid>
       <v-row>
         <template v-if="isLoading">
-          <v-col cols="12"> Loading... </v-col>
+          <v-col cols="12">
+            Loading...
+          </v-col>
         </template>
         <template v-else>
           <aside class="col col-12 col-lg-4 col-md-4 col-sm-5">
             <AppAside
               ref="AppAside"
+              :on-search-program-by-name="onSearchProgramByName"
               @onSelectCategory="onSelectCategory"
-              :onSearchProgramByName="onSearchProgramByName"
-            >
-            </AppAside>
+            />
           </aside>
           <main class="col col-12 col-lg-8 col-md-8 col-sm-7">
-            <template v-if="isProgramsLoading"> Loading... </template>
+            <template v-if="isProgramsLoading">
+              Loading...
+            </template>
             <template v-else>
               <ProgramsList
                 :programs="filteredPrograms ? filteredPrograms : programs"
@@ -37,6 +40,10 @@ import AppAside from '../components/core/AppAside.vue'
 
 export default {
   name: 'PagePrograms',
+  components: {
+    AppAside,
+    ProgramsList,
+  },
   data () {
     return {
       programs: null,
@@ -46,9 +53,19 @@ export default {
       filteredPrograms: null,
     }
   },
-  components: {
-    AppAside,
-    ProgramsList,
+  async mounted () {
+    let data
+    if (this.$route.query && this.$route.query.category) {
+      data = { category: this.$route.query.category }
+    }
+    try {
+      const response = await this.getPrograms(data)
+      this.programs = response
+    } catch (error) {
+      console.log('Programs mounted', error)
+    } finally {
+      this.isLoading = false
+    }
   },
   methods: {
     ...mapActions({
@@ -105,20 +122,6 @@ export default {
       this.$refs.AppAside.clearSearch()
       this.$set(this.$data, 'filteredPrograms', null)
     },
-  },
-  async mounted () {
-    let data
-    if (this.$route.query && this.$route.query.category) {
-      data = { category: this.$route.query.category }
-    }
-    try {
-      const response = await this.getPrograms(data)
-      this.programs = response
-    } catch (error) {
-      console.log('Programs mounted', error)
-    } finally {
-      this.isLoading = false
-    }
   },
 }
 </script>

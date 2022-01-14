@@ -27,7 +27,7 @@ export default {
         document.cookie.split('; ').map(x => {
           var val = x.split('=')
           return [val.shift(), val.join('=')]
-        })
+        }),
       )
       return a
     }
@@ -48,5 +48,5 @@ export default {
 
   getNoDomain (name) {
     Cookies.get(name)
-  }
+  },
 }

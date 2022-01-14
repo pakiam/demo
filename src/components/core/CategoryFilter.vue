@@ -1,12 +1,22 @@
 <template>
   <div class="b-category-filter">
-    <v-card class="mx-auto" width="256" tile>
+    <v-card
+      class="mx-auto"
+      width="256"
+      tile
+    >
       <v-navigation-drawer permanent>
-        <v-subheader class="text-h5"> Категории </v-subheader>
+        <v-subheader class="text-h5">
+          Категории
+        </v-subheader>
       </v-navigation-drawer>
 
       <v-list>
-        <v-list-item-group v-model="selectedCategory" mandatory color="primary">
+        <v-list-item-group
+          v-model="selectedCategory"
+          mandatory
+          color="primary"
+        >
           <v-list-item
             v-for="category in categories"
             :key="category.id"
@@ -38,14 +48,14 @@ export default {
       selectedCategory: 0,
     }
   },
+  async mounted () {
+    this.selectedCategory = Number(this.$route.query.category) || 0
+  },
   methods: {
     onSelectCategory (categoryId) {
       if (categoryId === this.selectedCategory) return
       this.$emit('onSelectCategory', categoryId)
     },
-  },
-  async mounted () {
-    this.selectedCategory = Number(this.$route.query.category) || 0
   },
 }
 </script>

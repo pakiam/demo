@@ -10,7 +10,10 @@
     >
       <v-container>
         <v-row no-gutters>
-          <v-col cols="12" md="12">
+          <v-col
+            cols="12"
+            md="12"
+          >
             <v-text-field
               v-model="searchString"
               label="Программы НМО"
@@ -21,7 +24,7 @@
                   source: 'input',
                 })
               "
-            ></v-text-field>
+            />
           </v-col>
         </v-row>
       </v-container>
@@ -32,16 +35,16 @@
 <script>
 export default {
   name: 'SearchForm',
-  data () {
-    return {
-      searchString: null,
-    }
-  },
   props: {
     onSearchProgramByName: {
       type: Function,
       required: true,
     },
+  },
+  data () {
+    return {
+      searchString: null,
+    }
   },
   methods: {
     clearSearch () {

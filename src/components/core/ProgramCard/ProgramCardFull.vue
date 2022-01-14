@@ -7,18 +7,24 @@
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         height="400px"
       >
-        <v-card-title v-text="program.frontName"></v-card-title>
+        <v-card-title v-text="program.frontName" />
       </v-img>
       <template>
         <v-card-text class="text--primary">
           {{ program.description }}
         </v-card-text>
       </template>
-      <v-divider class="mx-4"></v-divider>
+      <v-divider class="mx-4" />
       <v-card-actions>
         <v-row align="center">
-          <v-col cols="12" align="end">
-            <v-btn color="primary" @click="onCartClick(program)">
+          <v-col
+            cols="12"
+            align="end"
+          >
+            <v-btn
+              color="primary"
+              @click="onCartClick(program)"
+            >
               {{ isProgramInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
           </v-col>

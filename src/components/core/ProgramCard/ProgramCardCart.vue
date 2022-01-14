@@ -7,13 +7,19 @@
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         height="200px"
       >
-        <v-card-title v-text="program.frontName"></v-card-title>
+        <v-card-title v-text="program.frontName" />
       </v-img>
-      <v-divider class="mx-4"></v-divider>
+      <v-divider class="mx-4" />
       <v-card-actions>
         <v-row justify="space-between">
-          <v-col cols="12" align="end">
-            <v-btn color="primary" @click="onRemoveClick(program)">
+          <v-col
+            cols="12"
+            align="end"
+          >
+            <v-btn
+              color="primary"
+              @click="onRemoveClick(program)"
+            >
               {{ 'Убрать' }}
             </v-btn>
           </v-col>

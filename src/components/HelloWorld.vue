@@ -12,10 +12,11 @@
 
       <v-col class="mb-4">
         <v-row justify="center">
-          <router-link :to="{ name: 'Programs'}">Перейти в магазин</router-link>
+          <router-link :to="{ name: 'Programs' }">
+            Перейти в магазин
+          </router-link>
         </v-row>
       </v-col>
-
     </v-row>
   </v-container>
 </template>

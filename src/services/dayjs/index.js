@@ -6,24 +6,24 @@ import weekday from 'dayjs/plugin/weekday'
 import isoWeek from 'dayjs/plugin/isoWeek'
 
 const monthFormat = 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split(
-  '_'
+  '_',
 )
 const monthStandalone = 'январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь'.split(
-  '_'
+  '_',
 )
 
 const monthShortFormat = 'янв_февр_мар_апр_мая_июн_июл_авг_сен_окт_ноя_дек'.split(
-  '_'
+  '_',
 )
 const monthShortStandalone = 'янв_февр_март_апр_май_июн_июл_авг_сен_окт_ноя_дек'.split(
-  '_'
+  '_',
 )
 
 const MONTHS_IN_FORMAT = /D[oD]?(\[[^[\]]*\]|\s)+MMMM?/
 const locale = {
   name: 'ru',
   weekdays: 'воскресенье_понедельник_вторник_среда_четверг_пятница_суббота'.split(
-    '_'
+    '_',
   ),
   weekdaysShort: 'вск_пнд_втр_срд_чтв_птн_сбт'.split('_'),
   weekdaysMin: 'вс_пн_вт_ср_чт_пт_сб'.split('_'),
@@ -46,7 +46,7 @@ const locale = {
     L: 'DD.MM.YYYY',
     LL: 'D MMMM YYYY г.',
     LLL: 'D MMMM YYYY г., H:mm',
-    LLLL: 'dddd, D MMMM YYYY г., H:mm'
+    LLLL: 'dddd, D MMMM YYYY г., H:mm',
   },
   relativeTime: {
     future: 'через %s',
@@ -61,9 +61,9 @@ const locale = {
     M: 'месяц',
     MM: '%d месяцев',
     y: 'год',
-    yy: '%d лет'
+    yy: '%d лет',
   },
-  ordinal: n => n
+  ordinal: n => n,
 }
 
 dayjs.locale({ ...locale, weekStart: 1 })
@@ -93,5 +93,5 @@ export default {
     // Vue.filter('prettyDate', function (date, format = 'MMMM DD, YYYY h  mm A') {
     //   return dayjs(date).format(format)
     // })
-  }
+  },
 }

@@ -6,7 +6,10 @@
     class="PopupWrap"
     :class="{ 'PopupWrap--centered': centered }"
   >
-    <div class="PopupWrap__backdrop" @click="$emit('close')">
+    <div
+      class="PopupWrap__backdrop"
+      @click="$emit('close')"
+    >
       <slot name="backdrop" />
     </div>
     <slot />

@@ -1,6 +1,9 @@
 <template>
   <div class="b-programs-list">
-    <v-row v-if="programs.length" dense>
+    <v-row
+      v-if="programs.length"
+      dense
+    >
       <v-col
         v-for="program in programs"
         :key="program.id"
@@ -8,14 +11,16 @@
       >
         <ProgramCardDefault
           :program="program"
-          :isProgramInCart="isProgramInCart(program)"
+          :is-program-in-cart="isProgramInCart(program)"
           @onAddToCart="onAddToCart"
           @onRemoveFromCart="onRemoveFromCart"
           @onOpen="onOpenProgram"
         />
       </v-col>
     </v-row>
-    <div v-else>Nothing matched...</div>
+    <div v-else>
+      Nothing matched...
+    </div>
   </div>
 </template>
 
@@ -25,6 +30,9 @@ import ProgramCardDefault from '../core/ProgramCard/ProgramCardDefault.vue'
 
 export default {
   name: 'ProgramsList',
+  components: {
+    ProgramCardDefault,
+  },
   props: {
     programs: {
       type: Array,
@@ -34,9 +42,6 @@ export default {
       type: Number,
       default: 4,
     },
-  },
-  components: {
-    ProgramCardDefault,
   },
   computed: {
     ...mapGetters({
