@@ -23,7 +23,7 @@
           >
             <v-btn
               color="primary"
-              @click="onCartClick(program)"
+              @click="isProgramInCart ? onRemoveFromCart(program) : onAddToCart(program)"
             >
               {{ isProgramInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
@@ -35,8 +35,19 @@
 </template>
 
 <script>
+import useCartFunctions from '@/hooks/useCartFunctions'
+
 export default {
   name: 'ProgramCardFull',
+  setup (props) {
+    const { onRemoveFromCart, onAddToCart, isInCart } = useCartFunctions(props)
+
+    return {
+      onRemoveFromCart,
+      onAddToCart,
+      isProgramInCart: isInCart,
+    }
+  },
   props: {
     /**
      * @description
@@ -46,22 +57,6 @@ export default {
     program: {
       type: Object,
       required: true,
-    },
-    isProgramInCart: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    onCartClick (program) {
-      if (this.isProgramInCart) {
-        this.$emit('onRemoveFromCart', program)
-      } else {
-        this.$emit('onAddToCart', program)
-      }
-    },
-    onOpen (program) {
-      this.$emit('onOpen', program)
     },
   },
 }

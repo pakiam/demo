@@ -18,7 +18,7 @@
           >
             <v-btn
               color="primary"
-              @click="onRemoveClick(program)"
+              @click="onRemoveFromCart"
             >
               {{ 'Убрать' }}
             </v-btn>
@@ -30,8 +30,17 @@
 </template>
 
 <script>
+import useCartFunctions from '@/hooks/useCartFunctions'
+
 export default {
   name: 'ProgramCardCart',
+  setup (props) {
+    const { onRemoveFromCart } = useCartFunctions(props)
+
+    return {
+      onRemoveFromCart,
+    }
+  },
   props: {
     /**
      * @description
@@ -41,15 +50,6 @@ export default {
     program: {
       type: Object,
       required: true,
-    },
-  },
-  methods: {
-    /**
-     * @description Removes item from Cart
-     * @param {Object} program
-     */
-    onRemoveClick (program) {
-      this.$emit('onRemoveFromCart', program)
     },
   },
 }

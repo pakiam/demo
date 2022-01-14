@@ -15,9 +15,6 @@
             >
               <ProgramCardFull
                 :program="innerProgram"
-                :is-program-in-cart="innerIsItemInCart"
-                @onAddToCart="onAddToCart"
-                @onRemoveFromCart="onRemoveFromCart"
               />
             </div>
             <div
@@ -51,15 +48,10 @@ export default {
     program: {
       type: Object,
     },
-    isProgramInCart: {
-      type: Boolean,
-      default: false,
-    },
   },
   data () {
     return {
       innerProgram: null,
-      innerIsItemInCart: null,
     }
   },
   computed: {
@@ -72,35 +64,18 @@ export default {
       try {
         const response = await this.getProgramById(this.$route.params.id)
         this.innerProgram = response
-        this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
       } catch (error) {
         console.log('Program mounted', error)
       } finally {
       }
     } else {
       this.innerProgram = this.program
-      this.innerIsItemInCart = this.isProgramInCart
     }
   },
   methods: {
     ...mapActions({
       getProgramById: 'programs/getProgramById',
-      addToCart: 'cart/add',
-      removeFromCart: 'cart/remove',
     }),
-    onAddToCart (program) {
-      this.addToCart(program)
-      this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
-      this.$nextTick(() => {
-        this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
-      })
-    },
-    onRemoveFromCart (program) {
-      this.removeFromCart(program)
-      this.$nextTick(() => {
-        this.innerIsItemInCart = this.checkIsItemInCart(this.innerProgram)
-      })
-    },
   },
 }
 </script>

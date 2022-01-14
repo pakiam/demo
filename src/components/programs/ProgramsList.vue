@@ -11,9 +11,6 @@
       >
         <ProgramCardDefault
           :program="program"
-          :is-program-in-cart="isProgramInCart(program)"
-          @onAddToCart="onAddToCart"
-          @onRemoveFromCart="onRemoveFromCart"
           @onOpen="onOpenProgram"
         />
       </v-col>
@@ -25,7 +22,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 import ProgramCardDefault from '../core/ProgramCard/ProgramCardDefault.vue'
 
 export default {
@@ -38,34 +34,14 @@ export default {
       type: Array,
       required: true,
     },
-    columns: {
-      type: Number,
-      default: 4,
-    },
-  },
-  computed: {
-    ...mapGetters({
-      isProgramInCart: 'cart/isItemIn',
-    }),
   },
   methods: {
-    ...mapActions({
-      addToCart: 'cart/add',
-      removeFromCart: 'cart/remove',
-    }),
-    onAddToCart (item) {
-      this.addToCart(item)
-    },
-    onRemoveFromCart (item) {
-      this.removeFromCart(item)
-    },
     onOpenProgram (program) {
       this.$router.push({
         name: 'Program',
         params: {
           id: program.id,
           program: program,
-          isProgramInCart: this.isProgramInCart(program),
         },
       })
     },

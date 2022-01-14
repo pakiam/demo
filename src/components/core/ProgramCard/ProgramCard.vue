@@ -52,6 +52,7 @@
 
 <script>
 /**
+ * @deprecated
  * TODO: refac this
  * mb slots ??
  */

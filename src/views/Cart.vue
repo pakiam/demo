@@ -24,7 +24,6 @@
         >
           <ProgramCardCart
             :program="item"
-            @onRemoveFromCart="onRemoveFromCart"
           />
         </v-col>
       </v-row>
@@ -63,13 +62,9 @@ export default {
   methods: {
     ...mapActions({
       cleanCart: 'cart/clean',
-      removeFromCart: 'cart/remove',
     }),
     onCleanCart () {
       this.cleanCart()
-    },
-    onRemoveFromCart (item) {
-      this.removeFromCart(item)
     },
   },
 }
