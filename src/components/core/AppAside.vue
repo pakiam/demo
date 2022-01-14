@@ -28,7 +28,7 @@
                 </v-subheader>
               </v-system-bar>
               <!-- Search form -->
-              <SearchForm :onSearchProgramByName="onSearchProgramByName" />
+              <SearchForm :onSearchProgramByName="onSearchProgramByName" ref="SearchForm" />
               <!-- /Search form -->
             </v-navigation-drawer>
           </v-card>
@@ -88,7 +88,7 @@ export default {
       this.$emit('onSelectCategory', categoryId)
     },
     clearSearch () {
-      this.searchString = null
+      this.$refs.SearchForm.clearSearch()
     },
   },
   async mounted () {

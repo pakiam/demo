@@ -43,6 +43,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    clearSearch () {
+      this.searchString = null
+    },
+  },
 }
 </script>
 
