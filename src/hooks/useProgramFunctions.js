@@ -7,6 +7,7 @@ export default function useProgramFunctions (props) {
    * @param {Object} program
    */
   function onOpen () {
+    // WIP: da, eto specialno
     this.$emit('onOpen', program.value)
   }
 
