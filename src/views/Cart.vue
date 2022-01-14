@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col v-for="item in items" cols="3" :key="item.id">
+        <v-col v-for="item in items" cols="12" sm="6" md="4" :key="item.id">
           <ProgramCardCart
             :program="item"
             @onRemoveFromCart="onRemoveFromCart"

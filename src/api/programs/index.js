@@ -60,7 +60,7 @@ export default {
         )
         setTimeout(() => {
           resolve({ data: filteredPrograms, success: true })
-        }, 2000)
+        }, 5000)
       } else {
         reject(new Error({ message: 'Spicify Program Id', success: false }))
       }

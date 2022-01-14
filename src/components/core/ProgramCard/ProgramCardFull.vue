@@ -19,7 +19,7 @@
         <v-row align="center">
           <v-col cols="12" align="end">
             <v-btn color="primary" @click="onCartClick(program)">
-              {{ isItemInCart ? 'Убрать' : 'В корзину' }}
+              {{ isProgramInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
           </v-col>
         </v-row>
@@ -41,14 +41,14 @@ export default {
       type: Object,
       required: true,
     },
-    isItemInCart: {
+    isProgramInCart: {
       type: Boolean,
       default: false,
     },
   },
   methods: {
     onCartClick (program) {
-      if (this.isItemInCart) {
+      if (this.isProgramInCart) {
         this.$emit('onRemoveFromCart', program)
       } else {
         this.$emit('onAddToCart', program)

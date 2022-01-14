@@ -6,7 +6,7 @@
           <v-col cols="12"> Loading... </v-col>
         </template>
         <template v-else>
-          <aside class="col col-4">
+          <aside class="col col-12 col-lg-4 col-md-4 col-sm-5">
             <AppAside
               ref="AppAside"
               @onSelectCategory="onSelectCategory"
@@ -14,7 +14,7 @@
             >
             </AppAside>
           </aside>
-          <main class="col col=8">
+          <main class="col col-12 col-lg-8 col-md-8 col-sm-7">
             <template v-if="isProgramsLoading"> Loading... </template>
             <template v-else>
               <ProgramsList

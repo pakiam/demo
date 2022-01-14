@@ -3,13 +3,12 @@
     <v-row v-if="programs.length" dense>
       <v-col
         v-for="program in programs"
-        :cols="columns"
         :key="program.id"
-        class="b-programs-list__item"
+        class="b-programs-list__item col-12 col-xl-3 col-lg-4 col-md-6"
       >
         <ProgramCardDefault
           :program="program"
-          :isItemInCart="isItemInCart(program)"
+          :isProgramInCart="isProgramInCart(program)"
           @onAddToCart="onAddToCart"
           @onRemoveFromCart="onRemoveFromCart"
           @onOpen="onOpenProgram"
@@ -41,7 +40,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isItemInCart: 'cart/isItemIn',
+      isProgramInCart: 'cart/isItemIn',
     }),
   },
   methods: {
@@ -61,7 +60,7 @@ export default {
         params: {
           id: program.id,
           program: program,
-          isItemInCart: this.isItemInCart(program),
+          isProgramInCart: this.isProgramInCart(program),
         },
       })
     },

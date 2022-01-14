@@ -32,9 +32,10 @@ export default {
     return response.data
   },
   /**
-   * @description Search Programs by name
+   * @description Search Programs by name in list of current Programs
    *
-   * @param {String} categoryId
+   * @param {Array} programs
+   * @param {String} string
    */
   getProgramsByName: ({ dispatch }, { programs, string }) => {
     return Promise.resolve(programs.filter(
@@ -42,6 +43,11 @@ export default {
         item.frontName.toLowerCase().includes(string) || item.description.toLowerCase().includes(string),
     ))
   },
+  /**
+   * @description Search Programs by Id
+   *
+   * @param {String} programId
+   */
   getProgramById: async ({ dispatch }, programId) => {
     let response
     try {

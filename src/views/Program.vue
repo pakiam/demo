@@ -2,16 +2,19 @@
 <div class="page-program">
   <PopupRouterView label="program-page">
     <PopupOverlay slot="backdrop" />
-    <v-container v-if="innerProgram" fluid>
+    <v-container fluid>
       <v-row align="center" dense justify="center">
         <v-col cols="10">
-          <div class="b-program">
+          <div v-if="innerProgram" class="page-program__program">
             <ProgramCardFull
               :program="innerProgram"
-              :isItemInCart="innerIsItemInCart"
+              :isProgramInCart="innerIsItemInCart"
               @onAddToCart="onAddToCart"
               @onRemoveFromCart="onRemoveFromCart"
             />
+          </div>
+          <div v-else class="page-program__loader">
+            Loading...
           </div>
         </v-col>
       </v-row>
@@ -33,7 +36,7 @@ export default {
     program: {
       type: Object,
     },
-    isItemInCart: {
+    isProgramInCart: {
       type: Boolean,
       default: false,
     },
@@ -86,8 +89,16 @@ export default {
       }
     } else {
       this.innerProgram = this.program
-      this.innerIsItemInCart = this.isItemInCart
+      this.innerIsItemInCart = this.isProgramInCart
     }
   },
 }
 </script>
+
+<style lang="scss">
+.page-program__loader{
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+</style>

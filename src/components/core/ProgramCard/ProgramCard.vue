@@ -26,7 +26,7 @@
         <v-row justify="space-between">
           <v-col :cols="isFull ? 12 : 6" :align="isFull ? 'end' : 'center'">
             <v-btn color="primary" @click="onCartClick(program)">
-              {{ isItemInCart ? 'Убрать' : 'В корзину' }}
+              {{ isProgramInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
           </v-col>
           <v-col cols="6" align="center" v-if="!isFull">
@@ -41,7 +41,10 @@
 </template>
 
 <script>
-// TODO: refac this
+/**
+ * TODO: refac this
+ * mb slots ??
+ */
 export default {
   name: 'ProgramCard',
   props: {
@@ -54,7 +57,7 @@ export default {
       type: Object,
       required: true,
     },
-    isItemInCart: {
+    isProgramInCart: {
       type: Boolean,
       default: false,
     },
@@ -65,7 +68,7 @@ export default {
   },
   methods: {
     onCartClick (program) {
-      if (this.isItemInCart) {
+      if (this.isProgramInCart) {
         this.$emit('onRemoveFromCart', program)
       } else {
         this.$emit('onAddToCart', program)
