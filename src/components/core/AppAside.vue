@@ -50,7 +50,6 @@
 </template>
 
 <script>
-// TODO: refac this
 import { mapActions, mapGetters } from 'vuex'
 
 import CategoryFilter from './CategoryFilter.vue'

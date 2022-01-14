@@ -42,14 +42,14 @@ export default {
         item.frontName.toLowerCase().includes(string) || item.description.toLowerCase().includes(string),
     ))
   },
-  // getProgramById: async ({ dispatch }, programId) => {
-  //   let response
-  //   try {
-  //     response = await apiPrograms.getProgramById({ programId: programId })
-  //   } catch (error) {
-  //     return Promise.reject(error)
-  //   }
+  getProgramById: async ({ dispatch }, programId) => {
+    let response
+    try {
+      response = await apiPrograms.getProgramById({ programId: programId })
+    } catch (error) {
+      return Promise.reject(error)
+    }
 
-  //   return response.data
-  // }
+    return response.data
+  },
 }

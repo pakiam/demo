@@ -19,7 +19,7 @@
         <v-row align="center">
           <v-col cols="12" align="end">
             <v-btn color="primary" @click="onCartClick(program)">
-              {{ isInCart ? 'Убрать' : 'В корзину' }}
+              {{ isItemInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
           </v-col>
         </v-row>
@@ -34,21 +34,21 @@ export default {
   props: {
     /**
      * @description
-     * img
-     * frontName
+     * @param {Image} img
+     * @param {String} frontName
      */
     program: {
       type: Object,
       required: true,
     },
-    isInCart: {
+    isItemInCart: {
       type: Boolean,
       default: false,
     },
   },
   methods: {
     onCartClick (program) {
-      if (this.isInCart) {
+      if (this.isItemInCart) {
         this.$emit('onRemoveFromCart', program)
       } else {
         this.$emit('onAddToCart', program)

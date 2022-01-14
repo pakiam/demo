@@ -6,7 +6,7 @@ import { programs } from '../mockups/programs'
  */
 export default {
   /**
-   * @description Получение Программ
+   * @description Get Programs
    *
    * @param {Object} payload
    * @param {Number} payload.category
@@ -41,18 +41,29 @@ export default {
         }, 1000)
       })
     }
-    // return programs
-    // Promise.resolve(programs)
   },
-  getProgramsByName (string) {
+  /**
+   * @description Get Programs by Id
+   *
+   * @param {Object} payload
+   * @param {Number} payload.programId
+   * @return {object}
+   */
+  getProgramById (payload = {}) {
+    // return dataProvider.get('/programs/:id', { ...payload })
     return new Promise(function (resolve, reject) {
-      const filteredPrograms = programs.filter(
-        (item) =>
-          item.frontName.includes(string) || item.description.includes(string),
-      )
-      setTimeout(() => {
-        resolve({ data: filteredPrograms, success: true })
-      }, 5000)
+      console.log(123)
+      if (payload.programId) {
+        const programId = Number(payload.programId)
+        const filteredPrograms = programs.find(
+          (item) => item.id === programId,
+        )
+        setTimeout(() => {
+          resolve({ data: filteredPrograms, success: true })
+        }, 2000)
+      } else {
+        reject(new Error({ message: 'Spicify Program Id', success: false }))
+      }
     })
   },
 }

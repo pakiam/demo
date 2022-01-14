@@ -45,7 +45,6 @@ export default {
     },
   },
   async mounted () {
-    // TODO: refac ? move logic outside
     this.selectedCategory = Number(this.$route.query.category) || 0
   },
 }

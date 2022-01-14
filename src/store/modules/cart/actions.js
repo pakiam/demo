@@ -1,5 +1,6 @@
 export default {
   add: async ({ commit }, item) => {
+    console.log('add', item)
     commit('ADD_TO_CART', item)
   },
   remove: async ({ commit }, item) => {

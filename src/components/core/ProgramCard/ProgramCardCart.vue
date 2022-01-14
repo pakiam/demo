@@ -29,8 +29,8 @@ export default {
   props: {
     /**
      * @description
-     * img
-     * frontName
+     * @param {Image} img
+     * @param {String} frontName
      */
     program: {
       type: Object,
@@ -38,15 +38,13 @@ export default {
     },
   },
   methods: {
+    /**
+     * @description Removes item from Cart
+     * @param {Object} program
+     */
     onRemoveClick (program) {
       this.$emit('onRemoveFromCart', program)
     },
-    /**
-     * @description Go to item page
-     */
-    // onClick (program) {
-    //   this.$router.push({ name: 'Program', params: { id: program.id, program: program } })
-    // },
   },
 }
 </script>

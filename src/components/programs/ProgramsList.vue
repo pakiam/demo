@@ -9,7 +9,7 @@
       >
         <ProgramCardDefault
           :program="program"
-          :isInCart="isItemInCart(program)"
+          :isItemInCart="isItemInCart(program)"
           @onAddToCart="onAddToCart"
           @onRemoveFromCart="onRemoveFromCart"
           @onOpen="onOpenProgram"
@@ -50,19 +50,18 @@ export default {
       removeFromCart: 'cart/remove',
     }),
     onAddToCart (item) {
-      // this.$emit('onAddCart', item)
       this.addToCart(item)
     },
     onRemoveFromCart (item) {
       this.removeFromCart(item)
     },
-    onOpenProgram (item) {
+    onOpenProgram (program) {
       this.$router.push({
         name: 'Program',
         params: {
-          id: item.id,
-          program: item,
-          isInCart: this.isItemInCart(item),
+          id: program.id,
+          program: program,
+          isItemInCart: this.isItemInCart(program),
         },
       })
     },
