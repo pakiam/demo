@@ -8,6 +8,7 @@
         v-for="program in programs"
         :key="program.id"
         class="b-programs-list__item col-12 col-xl-3 col-lg-4 col-md-6"
+        data-test="program-item"
       >
         <ProgramCardDefault
           :program="program"

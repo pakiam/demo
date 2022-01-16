@@ -2,12 +2,10 @@
   <div class="page-cart">
     <v-container v-if="items.length">
       <v-row>
-        <v-col
-          cols="12"
-          align="end"
-        >
+        <v-col cols="12" align="end">
           <v-btn
             color="primary"
+            data-test="button-clear-cart"
             @click="onCleanCart"
           >
             Очистить корзину
@@ -15,16 +13,10 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col
-          v-for="item in items"
-          :key="item.id"
-          cols="12"
-          sm="6"
-          md="4"
+        <v-col v-for="item in items" :key="item.id" cols="12"
+               sm="6" md="4"
         >
-          <ProgramCardCart
-            :program="item"
-          />
+          <ProgramCardCart :program="item" />
         </v-col>
       </v-row>
       <v-divider class="my-4" />

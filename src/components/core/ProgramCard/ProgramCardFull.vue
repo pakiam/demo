@@ -10,7 +10,7 @@
         <v-card-title v-text="program.frontName" />
       </v-img>
       <template>
-        <v-card-text class="text--primary">
+        <v-card-text class="text--primary" data-test="program-description">
           {{ program.description }}
         </v-card-text>
       </template>
@@ -23,6 +23,7 @@
           >
             <v-btn
               color="primary"
+              data-test="program-item-full-to-cart"
               @click="isProgramInCart ? onRemoveFromCart(program) : onAddToCart(program)"
             >
               {{ isProgramInCart ? 'Убрать' : 'В корзину' }}

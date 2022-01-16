@@ -12,29 +12,27 @@
       <v-divider class="mx-4" />
       <v-card-actions>
         <v-row justify="space-between">
-          <v-col
-            cols="6"
-            align="center"
-          >
+          <v-col cols="6" align="center">
             <v-btn
               color="primary"
-              @click="
-                isProgramInCart
-                  ? onRemoveFromCart()
-                  : onAddToCart()
-              "
+              data-test="program-item-to-cart"
+              @click="isProgramInCart ? onRemoveFromCart() : onAddToCart()"
             >
               {{ isProgramInCart ? 'Убрать' : 'В корзину' }}
             </v-btn>
           </v-col>
-          <v-col
-            cols="6"
-            align="center"
-          >
+          <v-col cols="6" align="center">
             <v-btn
               color="deep-purple lighten-2"
+              data-test="program-item-link-to-page"
               text
-              @click="onOpen"
+              :to="{
+                name: 'Program',
+                params: {
+                  id: program.id,
+                  program: program,
+                },
+              }"
             >
               Подробнее
             </v-btn>

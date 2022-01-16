@@ -2,6 +2,11 @@
   <div class="page-programs">
     <v-container fluid>
       <v-row>
+        <v-col cols="12">
+          <h1>Программы</h1>
+        </v-col>
+      </v-row>
+      <v-row>
         <template v-if="isLoading">
           <v-col cols="12">
             Loading...

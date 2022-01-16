@@ -13,7 +13,7 @@
           >
             <v-navigation-drawer permanent>
               <v-system-bar>
-                <v-subheader>
+                <v-subheader data-test="cart-text">
                   <template v-if="isCartEmpty">
                     Корзина пуста
                   </template>
