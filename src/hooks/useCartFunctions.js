@@ -16,7 +16,7 @@ export default function useCartFunctions (props) {
   }
 
   /**
-   * @description Adds item from Cart
+   * @description Adds item to Cart
    * @param {Object} program
    */
   async function onAddToCart () {
